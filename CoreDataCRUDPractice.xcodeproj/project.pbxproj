@@ -7,19 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1C40004279E385600294962 /* JokeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C40003279E385600294962 /* JokeTableViewController.swift */; };
+		C1C40007279E3BA600294962 /* JokeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1C40005279E3BA600294962 /* JokeModel.xcdatamodeld */; };
+		C1C40009279E3C8200294962 /* JokeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C40008279E3C8200294962 /* JokeMessage.swift */; };
+		C1C4000C279E3D0D00294962 /* Joke+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C4000A279E3D0D00294962 /* Joke+CoreDataClass.swift */; };
+		C1C4000D279E3D0D00294962 /* Joke+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C4000B279E3D0D00294962 /* Joke+CoreDataProperties.swift */; };
 		C1C4FFF0279E362000294962 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C4FFEF279E362000294962 /* AppDelegate.swift */; };
 		C1C4FFF2279E362000294962 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C4FFF1279E362000294962 /* SceneDelegate.swift */; };
-		C1C4FFF4279E362000294962 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C4FFF3279E362000294962 /* ViewController.swift */; };
+		C1C4FFF4279E362000294962 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C4FFF3279E362000294962 /* ModalViewController.swift */; };
 		C1C4FFF7279E362000294962 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1C4FFF5279E362000294962 /* Main.storyboard */; };
 		C1C4FFF9279E362200294962 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C4FFF8279E362200294962 /* Assets.xcassets */; };
 		C1C4FFFC279E362200294962 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1C4FFFA279E362200294962 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C1C40003279E385600294962 /* JokeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeTableViewController.swift; sourceTree = "<group>"; };
+		C1C40006279E3BA600294962 /* JokeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JokeModel.xcdatamodel; sourceTree = "<group>"; };
+		C1C40008279E3C8200294962 /* JokeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeMessage.swift; sourceTree = "<group>"; };
+		C1C4000A279E3D0D00294962 /* Joke+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Joke+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C1C4000B279E3D0D00294962 /* Joke+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Joke+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C1C4FFEC279E362000294962 /* CoreDataCRUDPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataCRUDPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C4FFEF279E362000294962 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C4FFF1279E362000294962 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C1C4FFF3279E362000294962 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C1C4FFF3279E362000294962 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		C1C4FFF6279E362000294962 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1C4FFF8279E362200294962 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1C4FFFB279E362200294962 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +50,8 @@
 		C1C4FFE3279E362000294962 = {
 			isa = PBXGroup;
 			children = (
+				C1C4000A279E3D0D00294962 /* Joke+CoreDataClass.swift */,
+				C1C4000B279E3D0D00294962 /* Joke+CoreDataProperties.swift */,
 				C1C4FFEE279E362000294962 /* CoreDataCRUDPractice */,
 				C1C4FFED279E362000294962 /* Products */,
 			);
@@ -58,11 +70,14 @@
 			children = (
 				C1C4FFEF279E362000294962 /* AppDelegate.swift */,
 				C1C4FFF1279E362000294962 /* SceneDelegate.swift */,
-				C1C4FFF3279E362000294962 /* ViewController.swift */,
+				C1C40003279E385600294962 /* JokeTableViewController.swift */,
+				C1C4FFF3279E362000294962 /* ModalViewController.swift */,
 				C1C4FFF5279E362000294962 /* Main.storyboard */,
 				C1C4FFF8279E362200294962 /* Assets.xcassets */,
 				C1C4FFFA279E362200294962 /* LaunchScreen.storyboard */,
 				C1C4FFFD279E362200294962 /* Info.plist */,
+				C1C40005279E3BA600294962 /* JokeModel.xcdatamodeld */,
+				C1C40008279E3C8200294962 /* JokeMessage.swift */,
 			);
 			path = CoreDataCRUDPractice;
 			sourceTree = "<group>";
@@ -138,9 +153,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1C4FFF4279E362000294962 /* ViewController.swift in Sources */,
+				C1C4000C279E3D0D00294962 /* Joke+CoreDataClass.swift in Sources */,
+				C1C4FFF4279E362000294962 /* ModalViewController.swift in Sources */,
 				C1C4FFF0279E362000294962 /* AppDelegate.swift in Sources */,
+				C1C40009279E3C8200294962 /* JokeMessage.swift in Sources */,
+				C1C4000D279E3D0D00294962 /* Joke+CoreDataProperties.swift in Sources */,
 				C1C4FFF2279E362000294962 /* SceneDelegate.swift in Sources */,
+				C1C40007279E3BA600294962 /* JokeModel.xcdatamodeld in Sources */,
+				C1C40004279E385600294962 /* JokeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +380,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C1C40005279E3BA600294962 /* JokeModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C1C40006279E3BA600294962 /* JokeModel.xcdatamodel */,
+			);
+			currentVersion = C1C40006279E3BA600294962 /* JokeModel.xcdatamodel */;
+			path = JokeModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C1C4FFE4279E362000294962 /* Project object */;
 }
