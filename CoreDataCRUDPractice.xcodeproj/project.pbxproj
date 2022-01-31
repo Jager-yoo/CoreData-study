@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C1AF625827A8409C0016ACE9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF625727A8409C0016ACE9 /* CoreDataManager.swift */; };
+		C1AF625A27A845280016ACE9 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF625927A845280016ACE9 /* Refreshable.swift */; };
 		C1C40004279E385600294962 /* JokeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C40003279E385600294962 /* JokeTableViewController.swift */; };
 		C1C40007279E3BA600294962 /* JokeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1C40005279E3BA600294962 /* JokeModel.xcdatamodeld */; };
 		C1C40009279E3C8200294962 /* JokeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C40008279E3C8200294962 /* JokeMessage.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		C1AF625727A8409C0016ACE9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		C1AF625927A845280016ACE9 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		C1C40003279E385600294962 /* JokeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeTableViewController.swift; sourceTree = "<group>"; };
 		C1C40006279E3BA600294962 /* JokeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JokeModel.xcdatamodel; sourceTree = "<group>"; };
 		C1C40008279E3C8200294962 /* JokeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeMessage.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				C1AF625727A8409C0016ACE9 /* CoreDataManager.swift */,
 				C1C40003279E385600294962 /* JokeTableViewController.swift */,
 				C1C4FFF3279E362000294962 /* ModalViewController.swift */,
+				C1AF625927A845280016ACE9 /* Refreshable.swift */,
 				C1C4FFEF279E362000294962 /* AppDelegate.swift */,
 				C1C4FFF1279E362000294962 /* SceneDelegate.swift */,
 				C1C4FFF5279E362000294962 /* Main.storyboard */,
@@ -161,6 +164,7 @@
 				C1C4FFF0279E362000294962 /* AppDelegate.swift in Sources */,
 				C1C40009279E3C8200294962 /* JokeMessage.swift in Sources */,
 				C1C4000D279E3D0D00294962 /* Joke+CoreDataProperties.swift in Sources */,
+				C1AF625A27A845280016ACE9 /* Refreshable.swift in Sources */,
 				C1C4FFF2279E362000294962 /* SceneDelegate.swift in Sources */,
 				C1AF625827A8409C0016ACE9 /* CoreDataManager.swift in Sources */,
 				C1C40007279E3BA600294962 /* JokeModel.xcdatamodeld in Sources */,

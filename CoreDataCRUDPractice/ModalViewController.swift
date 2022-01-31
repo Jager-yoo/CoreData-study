@@ -8,7 +8,15 @@
 import UIKit
 import CoreData
 
-class ModalViewController: UIViewController, UITextFieldDelegate {
+extension ModalViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        saveJokeButtonTapped(saveJokeButton)
+        return true
+    }
+}
+
+class ModalViewController: UIViewController {
 
     @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
@@ -69,10 +77,5 @@ class ModalViewController: UIViewController, UITextFieldDelegate {
             print("❌ context 에 변경이 없다!")
             return
         }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        saveJokeButtonTapped(saveJokeButton)
-        return true
     }
 }

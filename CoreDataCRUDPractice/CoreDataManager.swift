@@ -5,8 +5,7 @@
 //  Created by 유재호 on 2022/02/01.
 //
 
-import Foundation
-import CoreData
+import CoreData // CoreData 안에 Foundation 포함되어있음!
 
 class CoreDataManager {
     

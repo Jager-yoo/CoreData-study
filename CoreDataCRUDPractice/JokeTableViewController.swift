@@ -6,11 +6,12 @@
 //
 
 import UIKit
-import CoreData
 
-protocol Refreshable: AnyObject {
+extension JokeTableViewController: Refreshable {
     
-    func refresh()
+    func refresh() {
+        handleRefreshControl()
+    }
 }
 
 class JokeTableViewController: UITableViewController {
@@ -140,11 +141,4 @@ class JokeTableViewController: UITableViewController {
     }
     */
 
-}
-
-extension JokeTableViewController: Refreshable {
-    
-    func refresh() {
-        handleRefreshControl()
-    }
 }
