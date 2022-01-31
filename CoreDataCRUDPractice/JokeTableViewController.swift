@@ -15,27 +15,14 @@ protocol Refreshable: AnyObject {
 
 class JokeTableViewController: UITableViewController {
     
-    lazy var container: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "JokeModel")
-        container.loadPersistentStores { description, error in
-            if let error = error {
-                fatalError("Unable to load persistent stores: \(error)")
-            }
-        }
-        return container
-    }()
-    
     private func fetchJokeData() -> [Joke] {
         // NSFetchRequest 는 '쿼리'다. 만들어서 누군가에게 던져야 한다.
         // 수박이 오늘 중요한 거 2가지 있다고 -> managedObjectContext, managedObjectModel
         // 모델에 명령을 내리는 주체가 Context. context 를 통해 데이터를 읽어와야 한다.
-        let context = container.viewContext
         let request = Joke.fetchRequest()
-        let fetched = try? context.fetch(request)
-        return fetched?.reversed() ?? [] // 최신 조크가 위로 올라오도록, 순서 뒤집어서 내보내기
+        let fetchedData = try? CoreDataManager.shared.fetch(request)
+        return fetchedData?.reversed() ?? [] // 최신 조크가 위로 올라오도록, 순서 뒤집어서 내보내기
     }
-    
-    // var container: NSPersistentContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +85,27 @@ class JokeTableViewController: UITableViewController {
             nextVC.delegate = self
         }
     }
+    
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            let eachJokeData = fetchJokeData()[indexPath.row]
+            
+            // 삭제하는 조크의 id 를 기준으로 삭제하는 건 어떻게 하지?
+            // let deleteTargetID = eachJokeData.id
+            
+            // 삭제했으면 저장까지 해줘야, 앱을 종료했다 다시 켰을 때에도 반영됨!
+            do {
+                CoreDataManager.shared.delete(eachJokeData)
+                try CoreDataManager.shared.save()
+                print("🔑 object 삭제 후 저장 완료!")
+            } catch {
+                print("❌ 삭제 후 저장 실패!")
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -106,30 +114,6 @@ class JokeTableViewController: UITableViewController {
         return true
     }
     */
-
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            let context = container.viewContext
-            let eachJokeData = fetchJokeData()[indexPath.row]
-            
-            // 삭제하는 조크의 id 를 기준으로 삭제하는 건 어떻게 하지?
-            // let deleteTargetID = eachJokeData.id
-            
-            context.delete(eachJokeData)
-            // 삭제했으면 저장까지 해줘야, 앱을 종료했다 다시 켰을 때에도 반영됨!
-            do {
-                try context.save()
-                print("🔑 object 삭제 후 저장 완료!")
-            } catch {
-                print("❌ 삭제 후 저장 실패!")
-            }
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
 
     /*
     // Override to support rearranging the table view.

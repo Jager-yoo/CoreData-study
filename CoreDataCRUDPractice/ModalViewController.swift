@@ -19,16 +19,6 @@ class ModalViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    lazy var container: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "JokeModel")
-        container.loadPersistentStores { description, error in
-            if let error = error {
-                fatalError("Unable to load persistent stores: \(error)")
-            }
-        }
-        return container
-    }()
-    
     @IBAction func saveJokeButtonTapped(_ sender: UIButton) {
         var jokeCategory: JokeMessage.Category
         
@@ -50,31 +40,27 @@ class ModalViewController: UIViewController, UITextFieldDelegate {
     }
     
     func saveContext(content: String, category: JokeMessage.Category) {
-        // 1. NSManagedObjectContext 가져온다.
-        // 변경사항이 당연히 없다. viewContext 가져오기만 하고, 딱히 해준 게 없기 때문.
-        let context = container.viewContext
-        
-        // 2. entity 가져온다.
-        let entity = NSEntityDescription.entity(forEntityName: "Joke", in: context)
+        // 1. entity 가져온다.
+        let entity = NSEntityDescription.entity(forEntityName: "Joke", in: CoreDataManager.shared)
         guard let entity = entity else {
             print("❌ entity 에 nil 잡혔다!")
             return
         }
         
-        // 3. NSManagedObject 만든다.
-        let joke = NSManagedObject(entity: entity, insertInto: context)
+        // 2. NSManagedObject 만든다.
+        let joke = NSManagedObject(entity: entity, insertInto: CoreDataManager.shared)
         
-        // 4. NSManagedObject 값을 세팅한다.
+        // 3. NSManagedObject 값을 세팅한다.
         let newJoke = JokeMessage(content: content, category: category, id: UUID())
         
         joke.setValue(newJoke.id, forKey: "id")
         joke.setValue(newJoke.content, forKey: "body")
         joke.setValue(newJoke.category.rawValue, forKey: "category")
         
-        // 5. NSManagedObjectContext 저장한다.
-        if context.hasChanges {
+        // 4. NSManagedObjectContext 저장한다.
+        if CoreDataManager.shared.hasChanges {
             do {
-                try context.save()
+                try CoreDataManager.shared.save()
                 print("💚 재미난 조크 저장됨!")
             } catch let error as NSError {
                 print("Error: \(error), \(error.userInfo)")
