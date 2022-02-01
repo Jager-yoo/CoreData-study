@@ -16,13 +16,20 @@ extension JokeTableViewController: Refreshable {
 
 class JokeTableViewController: UITableViewController {
     
-    private func fetchJokeData() -> [Joke] {
+    private func fetchAllJoke() -> [Joke] {
         // NSFetchRequest 는 '쿼리'다. 만들어서 누군가에게 던져야 한다.
         // 수박이 오늘 중요한 거 2가지 있다고 -> managedObjectContext, managedObjectModel
         // 모델에 명령을 내리는 주체가 Context. context 를 통해 데이터를 읽어와야 한다.
         let request = Joke.fetchRequest()
         let fetchedData = try? CoreDataManager.shared.fetch(request)
         return fetchedData?.reversed() ?? [] // 최신 조크가 위로 올라오도록, 순서 뒤집어서 내보내기
+    }
+    
+    private func fetchSpecificJoke(id: UUID) -> Joke? {
+        let request = Joke.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        let fetchedData = try? CoreDataManager.shared.fetch(request)
+        return fetchedData?.first
     }
     
     override func viewDidLoad() {
@@ -37,14 +44,14 @@ class JokeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchJokeData().count
+        return fetchAllJoke().count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         var content = cell.defaultContentConfiguration()
         
-        let eachJokeData = fetchJokeData()[indexPath.row]
+        let eachJokeData = fetchAllJoke()[indexPath.row]
         
         content.text = eachJokeData.body
         
@@ -91,20 +98,33 @@ class JokeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            let eachJokeData = fetchJokeData()[indexPath.row]
-            
-            // 삭제하는 조크의 id 를 기준으로 삭제하는 건 어떻게 하지?
-            // let deleteTargetID = eachJokeData.id
-            
-            // 삭제했으면 저장까지 해줘야, 앱을 종료했다 다시 켰을 때에도 반영됨!
-            do {
-                CoreDataManager.shared.delete(eachJokeData)
-                try CoreDataManager.shared.save()
-                print("🔑 object 삭제 후 저장 완료!")
-            } catch {
-                print("❌ 삭제 후 저장 실패!")
-            }
+            deleteJoke(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    private func deleteJoke(at indexPath: IndexPath) {
+        let eachJokeData = fetchAllJoke()[indexPath.row]
+        guard let deleteTargetID = eachJokeData.id else {
+            print("❌ 삭제할 object 의 ID 못 찾음!")
+            return
+        }
+        print("🆔 deleteTargetID : \(deleteTargetID)")
+        
+        // Model의 id 값을 활용해 CoreData에 해당하는 객체를 불러옵니다.
+        guard let deleteTarget = fetchSpecificJoke(id: deleteTargetID) else {
+            print("❌ 삭제할 object 못 찾음!")
+            return
+        }
+        
+        // 불러온 데이터를 삭제하고, context를 통해 변경사항을 저장합니다.
+        do {
+            CoreDataManager.shared.delete(deleteTarget)
+            // 삭제했으면 저장까지 해줘야, 앱을 종료했다 다시 켰을 때에도 반영됨!
+            try CoreDataManager.shared.save()
+            print("🔑 object 삭제 후 저장 완료!")
+        } catch {
+            print("❌ 삭제 후 저장 실패!")
         }
     }
 
