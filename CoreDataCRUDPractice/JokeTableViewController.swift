@@ -16,6 +16,24 @@ extension JokeTableViewController: Refreshable {
 
 class JokeTableViewController: UITableViewController {
     
+    @IBOutlet private weak var jokeFilterPopUpButton: UIButton!
+    
+    private let menu = UIMenu(
+        title: "조크의 종류를 선택하세요",
+        options: .singleSelection,
+        children: [
+            UIAction(title: "전체", handler: { _ in
+                print("🔖 전체 보기 선택됨!")
+            }),
+            UIAction(title: "유행어", handler: { _ in
+                print("🔖 유행어만 보기 선택됨!")
+            }),
+            UIAction(title: "아재개그", handler: { _ in
+                print("🔖 아재개그만 보기 선택됨!")
+            })
+        ]
+    )
+    
     private func fetchAllJoke() -> [Joke] {
         // NSFetchRequest 는 '쿼리'다. 만들어서 누군가에게 던져야 한다.
         // 수박이 오늘 중요한 거 2가지 있다고 -> managedObjectContext, managedObjectModel
@@ -35,6 +53,7 @@ class JokeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureRefreshControl()
+        jokeFilterPopUpButton.menu = menu
     }
 
     // MARK: - Table view data source
