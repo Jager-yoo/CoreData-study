@@ -1,5 +1,14 @@
 # CoreData-study
 
+## 📱 기능 시연
+
+- CoreData 저장, 삭제
+- 테이블뷰 Refresh 기능 with Delegation Pattern
+
+https://user-images.githubusercontent.com/71127966/152670214-2a92fe72-c17c-4be2-a3fe-8bbc18824b94.mov
+
+<br>
+
 ## 1️⃣ XCDataModel, Entity, Model 프로퍼티 생성
 
 - `JokeModel.xcdatamodeld` 파일 생성
