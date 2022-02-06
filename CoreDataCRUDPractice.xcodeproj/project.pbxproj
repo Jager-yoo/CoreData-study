@@ -54,8 +54,6 @@
 		C1C4FFE3279E362000294962 = {
 			isa = PBXGroup;
 			children = (
-				C1C4000A279E3D0D00294962 /* Joke+CoreDataClass.swift */,
-				C1C4000B279E3D0D00294962 /* Joke+CoreDataProperties.swift */,
 				C1C4FFEE279E362000294962 /* CoreDataCRUDPractice */,
 				C1C4FFED279E362000294962 /* Products */,
 			);
@@ -84,6 +82,8 @@
 				C1C4FFFA279E362200294962 /* LaunchScreen.storyboard */,
 				C1C4FFFD279E362200294962 /* Info.plist */,
 				C1C40005279E3BA600294962 /* JokeModel.xcdatamodeld */,
+				C1C4000A279E3D0D00294962 /* Joke+CoreDataClass.swift */,
+				C1C4000B279E3D0D00294962 /* Joke+CoreDataProperties.swift */,
 			);
 			path = CoreDataCRUDPractice;
 			sourceTree = "<group>";
