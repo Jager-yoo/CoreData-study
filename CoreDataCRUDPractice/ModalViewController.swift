@@ -28,7 +28,7 @@ class ModalViewController: UIViewController {
     }
     
     @IBAction func saveJokeButtonTapped(_ sender: UIButton) {
-        var jokeCategory: JokeMessage.Category
+        var jokeCategory: Joke.Category
         
         if segmentedControl.selectedSegmentIndex == .zero {
             jokeCategory = .buzzWord
@@ -47,7 +47,7 @@ class ModalViewController: UIViewController {
         textField.delegate = self
     }
     
-    func saveContext(content: String, category: JokeMessage.Category) {
+    func saveContext(content: String, category: Joke.Category) {
         // 1. entity 가져온다.
         let entity = NSEntityDescription.entity(forEntityName: "Joke", in: CoreDataManager.shared)
         guard let entity = entity else {
@@ -56,14 +56,12 @@ class ModalViewController: UIViewController {
         }
         
         // 2. NSManagedObject 만든다.
-        let joke = NSManagedObject(entity: entity, insertInto: CoreDataManager.shared)
+        let newJoke = NSManagedObject(entity: entity, insertInto: CoreDataManager.shared)
         
         // 3. NSManagedObject 값을 세팅한다.
-        let newJoke = JokeMessage(content: content, category: category, id: UUID())
-        
-        joke.setValue(newJoke.id, forKey: "id")
-        joke.setValue(newJoke.content, forKey: "body")
-        joke.setValue(newJoke.category.rawValue, forKey: "category")
+        newJoke.setValue(UUID(), forKey: "id")
+        newJoke.setValue(content, forKey: "body")
+        newJoke.setValue(category.rawValue, forKey: "category")
         
         // 4. NSManagedObjectContext 저장한다.
         if CoreDataManager.shared.hasChanges {

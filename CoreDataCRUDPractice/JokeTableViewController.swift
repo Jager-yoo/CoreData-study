@@ -75,12 +75,12 @@ class JokeTableViewController: UITableViewController {
         content.text = eachJokeData.body
         
         switch eachJokeData.category {
-        case JokeMessage.Category.buzzWord.rawValue:
+        case Joke.Category.buzzWord.rawValue:
             content.secondaryAttributedText = NSAttributedString(
                 string: "유행어",
                 attributes: [.foregroundColor: UIColor.systemRed]
             )
-        case JokeMessage.Category.dadJoke.rawValue:
+        case Joke.Category.dadJoke.rawValue:
             content.secondaryAttributedText = NSAttributedString(
                 string: "아재개그",
                 attributes: [.foregroundColor: UIColor.systemBlue]
@@ -124,14 +124,10 @@ class JokeTableViewController: UITableViewController {
     
     private func deleteJoke(at indexPath: IndexPath) {
         let eachJokeData = fetchAllJoke()[indexPath.row]
-        guard let deleteTargetID = eachJokeData.id else {
-            print("❌ 삭제할 object 의 ID 못 찾음!")
-            return
-        }
-        print("🆔 deleteTargetID : \(deleteTargetID)")
+        print("🆔 deleteTargetID : \(eachJokeData.id)")
         
         // Model의 id 값을 활용해 CoreData에 해당하는 객체를 불러옵니다.
-        guard let deleteTarget = fetchSpecificJoke(id: deleteTargetID) else {
+        guard let deleteTarget = fetchSpecificJoke(id: eachJokeData.id) else {
             print("❌ 삭제할 object 못 찾음!")
             return
         }

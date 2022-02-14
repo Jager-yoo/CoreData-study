@@ -3,9 +3,9 @@
     <entity name="Joke" representedClassName="Joke" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="category" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Joke" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Joke" positionX="-63" positionY="-18" width="128" height="74"/>
     </elements>
 </model>
