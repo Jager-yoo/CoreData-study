@@ -27,7 +27,13 @@ class ModalViewController: UIViewController {
         }
     }
     
-    @IBAction func saveJokeButtonTapped(_ sender: UIButton) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        textField.delegate = self
+        // TODO: 키보드 show, hide 대응하기
+    }
+    
+    @IBAction private func saveJokeButtonTapped(_ sender: UIButton) {
         var jokeCategory: Joke.Category
         
         if segmentedControl.selectedSegmentIndex == .zero {
@@ -42,12 +48,7 @@ class ModalViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        textField.delegate = self
-    }
-    
-    func saveContext(content: String, category: Joke.Category) {
+    private func saveContext(content: String, category: Joke.Category) {
         // 1. entity 가져온다.
         let entity = NSEntityDescription.entity(forEntityName: "Joke", in: CoreDataManager.shared)
         guard let entity = entity else {
